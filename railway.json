@@ -1,0 +1,23 @@
+{
+  "build": {
+    "builder": "NIXPACKS"
+  },
+  "deploy": {
+    "startCommand": "java -jar target/*.jar",
+    "healthcheckPath": "/actuator/health",
+    "healthcheckTimeout": 300,
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 10
+  },
+  "services": {
+    "eureka-server": {
+      "port": 8761,
+      "environment": {
+        "SPRING_PROFILES_ACTIVE": "production",
+        "SERVICE_PORT": "8761",
+        "SERVICE_NAME": "eureka-server",
+        "EUREKA_HOSTNAME": "eureka-server"
+      }
+    }
+  }
+}
